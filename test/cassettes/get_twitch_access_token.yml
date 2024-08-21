@@ -1,0 +1,43 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://id.twitch.tv/oauth2/token
+    body:
+      encoding: UTF-8
+      string: '{"client_id":"<TWITCH_API_CLIENT_ID>","client_secret":"<TWITCH_API_CLIENT_SECRET>","grant_type":"client_credentials"}'
+    headers:
+      User-Agent:
+      - Faraday v2.10.1
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 21 Aug 2024 00:41:11 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '93'
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Ctxlog-Logid:
+      - 1-66c537a7-79231a52157199d303cb8bc2
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"abcdefg123456790","expires_in":5520919,"token_type":"bearer"}
+
+        '
+  recorded_at: Wed, 21 Aug 2024 00:41:12 GMT
+recorded_with: VCR 6.3.1
