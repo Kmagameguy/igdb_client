@@ -1,0 +1,121 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://id.twitch.tv/oauth2/token
+    body:
+      encoding: UTF-8
+      string: '{"client_id":"<TWITCH_API_CLIENT_ID>","client_secret":"<TWITCH_API_CLIENT_SECRET>","grant_type":"client_credentials"}'
+    headers:
+      User-Agent:
+      - Faraday v2.10.1
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 21 Aug 2024 01:30:39 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '93'
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Ctxlog-Logid:
+      - 1-66c5433f-2dcc3260044efaf03095eda3
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"abcdefg123456790","expires_in":5476329,"token_type":"bearer"}
+
+        '
+  recorded_at: Wed, 21 Aug 2024 01:30:39 GMT
+- request:
+    method: post
+    uri: https://api.igdb.com/v4/games
+    body:
+      encoding: UTF-8
+      string: fields name;
+    headers:
+      User-Agent:
+      - Faraday v2.10.1
+      Client-Id:
+      - "<TWITCH_API_CLIENT_ID>"
+      Authorization:
+      - Bearer abcdefg123456790
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 21 Aug 2024 01:30:40 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        [
+          {
+            "id": 131913,
+            "name": "Maji Kyun! Renaissance"
+          },
+          {
+            "id": 122801,
+            "name": "Zhed"
+          },
+          {
+            "id": 88308,
+            "name": "Hey Duggee: The Big Outdoor App"
+          },
+          {
+            "id": 223741,
+            "name": "Jurassic World Aftermath Collection"
+          },
+          {
+            "id": 95080,
+            "name": "Dotra"
+          },
+          {
+            "id": 104748,
+            "name": "Space station - build your own ISS"
+          },
+          {
+            "id": 89616,
+            "name": "Bubble Whirl Shooter"
+          },
+          {
+            "id": 91579,
+            "name": "Racing Live"
+          },
+          {
+            "id": 124961,
+            "name": "Railroad Tycoon 2: Platinum Edition"
+          },
+          {
+            "id": 119025,
+            "name": "Pet Puzzle"
+          }
+        ]
+  recorded_at: Wed, 21 Aug 2024 01:30:40 GMT
+recorded_with: VCR 6.3.1
