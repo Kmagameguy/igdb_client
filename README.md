@@ -30,9 +30,12 @@ Replace the template values in the provided `.env` file with your own values.  Y
 
 See the [dotenv](https://github.com/bkeepers/dotenv) documentation for more details.
 
-### Usage Instructions
+### Run Setup Script
+Run `bin/setup` to finish installation.  This script just checks the current environment and performs tasks like installing bundler and the required gems (see `igdb_client.gemspec` and `Gemfile` for more details).
 
-At the simplest level, usage works like this:
+## Usage Instructions
+
+Use the provided `bin/console` script to open a ruby interpreter session with the IGDB Client pre-loaded.  At the simplest level, usage works like this:
 
 ```ruby
 client = IgdbClient::ApiClient.new
@@ -80,6 +83,14 @@ client = IgdbClient::ApiClient.new
 client.get(:games, { id: 124961, fields: "name" })
 => # Returns the specified game and only its ID and Name fields.
 ```
+
 ### Other Notes
 As long as you hold a reference to the `Igdb::ApiClient` in memory, it will manage authentication concerns w/Twitch automatically.
 The access token remains in memory until it expires at which point any subsequent request made through the client will silently reauthenticate and process the request.
+
+## Development
+Contributions are welcome.  To get started with development:
+1. Fork this repository.
+1. Complete the setup steps above.
+1. Make a pull request when you're ready to propose changes.
+1. Include test coverage for your changes.  You can run `bin/test` to run the test suite.
