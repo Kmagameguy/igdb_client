@@ -23,9 +23,9 @@ class IgdbClient::ApiClient
     params.keys.include?(:id) ? response_body.first : response_body
   end
 
-  def search(query, raw_params = { fields: '*'})
+  def search(path, query, raw_params = { fields: '*'})
     raw_params[:search] = '"' + query + '"'
-    get(:search, raw_params)
+    get(path.to_sym, raw_params)
   end
 
   private
