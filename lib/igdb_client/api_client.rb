@@ -41,19 +41,18 @@ class IgdbClient::ApiClient
 
   def build_query
     query = mapped_params
-    query << "fields '*';" if missing_fields_parameter?
+    query.concat(["fields '*';"]) if missing_fields_parameter?
     query.join("")
   end
 
   def mapped_params
-    @mapped_params ||=
-      params.map do |field, value|
-        field == :id ? "where id = #{value};" : "#{field} #{value};"
-      end
+    params.map do |field, value|
+      field == :id ? "where id = #{value};" : "#{field} #{value};"
+    end
   end
 
   def missing_fields_parameter?
-    params.none? { |str| str.include?("fields") }
+    params.none? { |k, _v| k.to_s.include?("fields") }
   end
 
   def api_base_url
