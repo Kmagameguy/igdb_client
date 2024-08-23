@@ -1,0 +1,121 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://id.twitch.tv/oauth2/token
+    body:
+      encoding: UTF-8
+      string: '{"client_id":"<TWITCH_API_CLIENT_ID>","client_secret":"<TWITCH_API_CLIENT_SECRET>","grant_type":"client_credentials"}'
+    headers:
+      User-Agent:
+      - Faraday v2.10.1
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 23 Aug 2024 00:44:37 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '93'
+      Connection:
+      - keep-alive
+      Server:
+      - nginx
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Ctxlog-Logid:
+      - 1-66c7db74-4e80b9507b182c343ce230bc
+    body:
+      encoding: UTF-8
+      string: '{"access_token":"abcdefg123456790","expires_in":4691162,"token_type":"bearer"}
+
+        '
+  recorded_at: Fri, 23 Aug 2024 00:44:37 GMT
+- request:
+    method: post
+    uri: https://api.igdb.com/v4/games
+    body:
+      encoding: UTF-8
+      string: fields name;search "Half-Life 2";
+    headers:
+      User-Agent:
+      - Faraday v2.10.1
+      Client-Id:
+      - "<TWITCH_API_CLIENT_ID>"
+      Authorization:
+      - Bearer abcdefg123456790
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 23 Aug 2024 00:44:37 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        [
+          {
+            "id": 267639,
+            "name": "Half-Life 2: MMod - Half-Life 2: Update"
+          },
+          {
+            "id": 271415,
+            "name": "Half-Life 2: MMod - Half-Life 2: Episode Two"
+          },
+          {
+            "id": 271414,
+            "name": "Half-Life 2: MMod - Half-Life 2: Episode One"
+          },
+          {
+            "id": 233,
+            "name": "Half-Life 2"
+          },
+          {
+            "id": 138366,
+            "name": "Selected Ambient Works Volume II for Half-Life 2"
+          },
+          {
+            "id": 262537,
+            "name": "Half-Life 2 RTX"
+          },
+          {
+            "id": 132989,
+            "name": "Half-Life 2: MMod"
+          },
+          {
+            "id": 28827,
+            "name": "Half-Life 2: VR Mod"
+          },
+          {
+            "id": 127906,
+            "name": "Half-Life 2: Update"
+          },
+          {
+            "id": 128657,
+            "name": "Half-Life 2 Classic"
+          }
+        ]
+  recorded_at: Fri, 23 Aug 2024 00:44:37 GMT
+recorded_with: VCR 6.3.1

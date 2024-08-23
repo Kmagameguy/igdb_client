@@ -35,5 +35,17 @@ class IgdbClient::ApiClientTest < ::Minitest::Test
         end
       end
     end
+
+    describe "#search" do
+      it "can search for things" do
+        VCR.use_cassette("game_search") do
+          response = subject.new.search(:games, "Half-Life 2", fields: "name")
+          sample_game = response.sample
+
+          assert sample_game.id.present?
+          assert_match "Half-Life 2", sample_game.name
+        end
+      end
+    end
   end
 end
