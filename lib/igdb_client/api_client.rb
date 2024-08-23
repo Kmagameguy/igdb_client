@@ -47,12 +47,18 @@ class IgdbClient::ApiClient
 
   def mapped_params
     params.map do |field, value|
-      field == :id ? "where id = #{value};" : "#{field} #{value};"
+      if field == :id
+        "where id = #{value};"
+      elsif field == :search
+        'search' + '"' + value + '";'
+      else
+        "#{field} #{value};"
+      end
     end
   end
 
   def missing_fields_parameter?
-    params.none? { |k, _v| k.to_s.include?("fields") }
+    params.keys.none? { |key| key.to_s.include?("fields") }
   end
 
   def api_base_url

@@ -84,6 +84,12 @@ client.get(:games, { id: 124961, fields: "name" })
 => # Returns the specified game and only its ID and Name fields.
 ```
 
+You can search for content by passing a `search` value:
+```ruby
+client = IgdbClient::ApiClient.new
+client.get(:characters, { search: "Bob", fields: "name"})
+```
+
 ### Other Notes
 As long as you hold a reference to the `Igdb::ApiClient` in memory, it will manage authentication concerns w/Twitch automatically.
 The access token remains in memory until it expires at which point any subsequent request made through the client will silently reauthenticate and process the request.

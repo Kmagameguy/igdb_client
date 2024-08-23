@@ -34,6 +34,16 @@ class IgdbClient::ApiClientTest < ::Minitest::Test
           subject.new.get(:invalid_endpoint)
         end
       end
+
+      it "can search for things" do
+        VCR.use_cassette("game_search") do
+          response = subject.new.get(:games, search: "Half-Life 2", fields: "name")
+          sample_game = response.sample
+
+          assert sample_game.id.present?
+          assert_match "Half-Life 2", sample_game.name
+        end
+      end
     end
   end
 end
