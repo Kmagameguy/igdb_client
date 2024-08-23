@@ -84,10 +84,10 @@ client.get(:games, { id: 124961, fields: "name" })
 => # Returns the specified game and only its ID and Name fields.
 ```
 
-You can search for content with the specialized `search` method:
+You can search for content by passing a `search` value:
 ```ruby
 client = IgdbClient::ApiClient.new
-client.search(:characters, "Bob")
+client.get(:characters, { search: "Bob", fields: "name"})
 ```
 
 ### Other Notes

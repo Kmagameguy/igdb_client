@@ -23,11 +23,6 @@ class IgdbClient::ApiClient
     params.keys.include?(:id) ? response_body.first : response_body
   end
 
-  def search(path, query, raw_params = { fields: '*'})
-    raw_params[:search] = '"' + query + '"'
-    get(path.to_sym, raw_params)
-  end
-
   private
 
   def validate_endpoint
@@ -52,7 +47,13 @@ class IgdbClient::ApiClient
 
   def mapped_params
     params.map do |field, value|
-      field == :id ? "where id = #{value};" : "#{field} #{value};"
+      if field == :id
+        "where id = #{value};"
+      elsif field == :search
+        'search' + '"' + value + '";'
+      else
+        "#{field} #{value};"
+      end
     end
   end
 
