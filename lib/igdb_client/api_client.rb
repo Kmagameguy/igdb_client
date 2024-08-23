@@ -52,7 +52,7 @@ class IgdbClient::ApiClient
   end
 
   def missing_fields_parameter?
-    params.none? { |k, _v| k.to_s.include?("fields") }
+    params.keys.none? { |key| key.to_s.include?("fields") }
   end
 
   def api_base_url
