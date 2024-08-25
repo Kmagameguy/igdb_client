@@ -1,5 +1,5 @@
 module IgdbClient
-  class ApiClient
+  class Api
     def self.help
       new.help
     end
