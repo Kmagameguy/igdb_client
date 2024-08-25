@@ -21,7 +21,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 23 Aug 2024 00:44:37 GMT
+      - Sun, 25 Aug 2024 22:26:29 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -33,13 +33,13 @@ http_interactions:
       Access-Control-Allow-Origin:
       - "*"
       X-Ctxlog-Logid:
-      - 1-66c7db74-4e80b9507b182c343ce230bc
+      - 1-66cbaf95-43c2076e0097f4e34debf84e
     body:
       encoding: UTF-8
-      string: '{"access_token":"abcdefg123456790","expires_in":4691162,"token_type":"bearer"}
+      string: '{"access_token":"abcdefg1234567890","expires_in":5067237,"token_type":"bearer"}
 
         '
-  recorded_at: Fri, 23 Aug 2024 00:44:37 GMT
+  recorded_at: Sun, 25 Aug 2024 22:26:29 GMT
 - request:
     method: post
     uri: https://api.igdb.com/v4/games
@@ -52,7 +52,7 @@ http_interactions:
       Client-Id:
       - "<TWITCH_API_CLIENT_ID>"
       Authorization:
-      - Bearer abcdefg123456790
+      - Bearer abcdefg1234567890
       Content-Type:
       - application/json
       Accept-Encoding:
@@ -65,7 +65,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 23 Aug 2024 00:44:37 GMT
+      - Sun, 25 Aug 2024 22:26:29 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -117,5 +117,5 @@ http_interactions:
             "name": "Half-Life 2 Classic"
           }
         ]
-  recorded_at: Fri, 23 Aug 2024 00:44:37 GMT
+  recorded_at: Sun, 25 Aug 2024 22:26:29 GMT
 recorded_with: VCR 6.3.1
