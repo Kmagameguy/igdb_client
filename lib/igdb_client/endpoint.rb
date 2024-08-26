@@ -2,6 +2,9 @@ module IgdbClient
   class Endpoint
     class Invalid < StandardError; end
 
+    # Convenience method to avoid having
+    # to type the "new" keyword any time
+    # this class is used.
     def self.validate(path)
       new.validate(path)
     end
