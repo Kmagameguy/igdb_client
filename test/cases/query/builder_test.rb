@@ -11,6 +11,7 @@ module IgdbClient
             end
           end
         end
+
         describe "#build" do
           it "creates a default query without arguments" do
             assert_equal subject.new.build, "fields *;"
@@ -45,10 +46,12 @@ module IgdbClient
           end
 
           it "creates a query with a limit, search terms, and a default set of fields when not provided field arguments" do
+            subject.any_instance.expects(:show_redundant_argument_warning).once
             assert_equal subject.new(id: 7, limit: 2).build, "fields *;where id = 7;limit 2;"
           end
 
           it "creates a query with a selected set of fields, an id, and a limit" do
+            subject.any_instance.expects(:show_redundant_argument_warning).once
             assert_equal subject.new(fields: "name,cover", id: 7, limit: 2).build, "fields name,cover;where id = 7;limit 2;"
           end
         end

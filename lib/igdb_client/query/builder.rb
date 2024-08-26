@@ -5,6 +5,7 @@ module IgdbClient
 
       def initialize(fields: "*", id: nil, search: nil, limit: nil)
         raise InvalidArguments, "Cannot combine ID with Search" if id.present? && search.present?
+        show_redundant_argument_warning if id.present? && limit.present?
 
         @params = {
           fields: Fields::Field.new(fields),
@@ -20,6 +21,12 @@ module IgdbClient
 
       def search_by_id?
         @params[:id].field.present?
+      end
+
+      private
+
+      def show_redundant_argument_warning
+        "Warning: Specifying 'limit' with 'id' is redundant"
       end
     end
   end
