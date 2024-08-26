@@ -1,7 +1,11 @@
 module IgdbClient
   module Query
     class Builder
-      def initialize(fields: Field.new, id: Id.new, search: nil)
+      class InvalidArguments < StandardError; end
+
+      def initialize(fields: "*", id: nil, search: nil)
+        raise InvalidArguments, "Cannot combine ID with Search" if id.present? && search.present?
+
         @params = {
           fields: Fields::Field.new(fields),
           id: Fields::Id.new(id),
