@@ -1,4 +1,8 @@
 # Internet Game Database
+## 1.0.0
+- BREAKING: Rename `IgdbClient::ApiClient` to `IgdbClient::Api`
+- BREAKING: Use keyword arguments for `IgdbClient::Api.new` instead of a hash
+- Extract several utility classes from the core `IgdbClient::Api` class
 
 ## 0.1.0
 - Make search queries easier to use

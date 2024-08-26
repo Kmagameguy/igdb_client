@@ -21,7 +21,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Sun, 25 Aug 2024 22:26:29 GMT
+      - Mon, 26 Aug 2024 01:16:02 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -33,19 +33,19 @@ http_interactions:
       Access-Control-Allow-Origin:
       - "*"
       X-Ctxlog-Logid:
-      - 1-66cbaf95-43c2076e0097f4e34debf84e
+      - 1-66cbd752-35a488c54774074918c9443d
     body:
       encoding: UTF-8
-      string: '{"access_token":"abcdefg1234567890","expires_in":5067237,"token_type":"bearer"}
+      string: '{"access_token":"abcdefg1234567890","expires_in":5235495,"token_type":"bearer"}
 
         '
-  recorded_at: Sun, 25 Aug 2024 22:26:29 GMT
+  recorded_at: Mon, 26 Aug 2024 01:16:02 GMT
 - request:
     method: post
     uri: https://api.igdb.com/v4/games
     body:
       encoding: UTF-8
-      string: fields name;search "Half-Life 2";
+      string: fields name;limit 1;
     headers:
       User-Agent:
       - Faraday v2.10.1
@@ -65,7 +65,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Sun, 25 Aug 2024 22:26:29 GMT
+      - Mon, 26 Aug 2024 01:16:03 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -77,45 +77,9 @@ http_interactions:
       string: |-
         [
           {
-            "id": 267639,
-            "name": "Half-Life 2: MMod - Half-Life 2: Update"
-          },
-          {
-            "id": 271415,
-            "name": "Half-Life 2: MMod - Half-Life 2: Episode Two"
-          },
-          {
-            "id": 271414,
-            "name": "Half-Life 2: MMod - Half-Life 2: Episode One"
-          },
-          {
-            "id": 233,
-            "name": "Half-Life 2"
-          },
-          {
-            "id": 138366,
-            "name": "Selected Ambient Works Volume II for Half-Life 2"
-          },
-          {
-            "id": 262537,
-            "name": "Half-Life 2 RTX"
-          },
-          {
-            "id": 132989,
-            "name": "Half-Life 2: MMod"
-          },
-          {
-            "id": 28827,
-            "name": "Half-Life 2: VR Mod"
-          },
-          {
-            "id": 127906,
-            "name": "Half-Life 2: Update"
-          },
-          {
-            "id": 128657,
-            "name": "Half-Life 2 Classic"
+            "id": 131913,
+            "name": "Maji Kyun! Renaissance"
           }
         ]
-  recorded_at: Sun, 25 Aug 2024 22:26:29 GMT
+  recorded_at: Mon, 26 Aug 2024 01:16:03 GMT
 recorded_with: VCR 6.3.1

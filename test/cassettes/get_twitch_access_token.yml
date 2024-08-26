@@ -21,7 +21,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 21 Aug 2024 00:41:11 GMT
+      - Sun, 25 Aug 2024 22:26:31 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -33,11 +33,11 @@ http_interactions:
       Access-Control-Allow-Origin:
       - "*"
       X-Ctxlog-Logid:
-      - 1-66c537a7-79231a52157199d303cb8bc2
+      - 1-66cbaf96-6a3f7bee6582af026d9c7f87
     body:
       encoding: UTF-8
-      string: '{"access_token":"abcdefg123456790","expires_in":5520919,"token_type":"bearer"}
+      string: '{"access_token":"abcdefg1234567890","expires_in":4902336,"token_type":"bearer"}
 
         '
-  recorded_at: Wed, 21 Aug 2024 00:41:12 GMT
+  recorded_at: Sun, 25 Aug 2024 22:26:31 GMT
 recorded_with: VCR 6.3.1

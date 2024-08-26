@@ -21,7 +21,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 21 Aug 2024 01:30:39 GMT
+      - Sun, 25 Aug 2024 22:26:30 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -33,13 +33,13 @@ http_interactions:
       Access-Control-Allow-Origin:
       - "*"
       X-Ctxlog-Logid:
-      - 1-66c5433f-2dcc3260044efaf03095eda3
+      - 1-66cbaf96-175a31bb29d2d20d236b96e5
     body:
       encoding: UTF-8
-      string: '{"access_token":"abcdefg123456790","expires_in":5476329,"token_type":"bearer"}
+      string: '{"access_token":"abcdefg1234567890","expires_in":4692467,"token_type":"bearer"}
 
         '
-  recorded_at: Wed, 21 Aug 2024 01:30:39 GMT
+  recorded_at: Sun, 25 Aug 2024 22:26:30 GMT
 - request:
     method: post
     uri: https://api.igdb.com/v4/games
@@ -52,7 +52,7 @@ http_interactions:
       Client-Id:
       - "<TWITCH_API_CLIENT_ID>"
       Authorization:
-      - Bearer abcdefg123456790
+      - Bearer abcdefg1234567890
       Content-Type:
       - application/json
       Accept-Encoding:
@@ -65,7 +65,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 21 Aug 2024 01:30:40 GMT
+      - Sun, 25 Aug 2024 22:26:30 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -89,10 +89,6 @@ http_interactions:
             "name": "Hey Duggee: The Big Outdoor App"
           },
           {
-            "id": 223741,
-            "name": "Jurassic World Aftermath Collection"
-          },
-          {
             "id": 95080,
             "name": "Dotra"
           },
@@ -109,6 +105,10 @@ http_interactions:
             "name": "Racing Live"
           },
           {
+            "id": 2711,
+            "name": "Brain Age 2: More Training in Minutes a Day!"
+          },
+          {
             "id": 124961,
             "name": "Railroad Tycoon 2: Platinum Edition"
           },
@@ -117,5 +117,5 @@ http_interactions:
             "name": "Pet Puzzle"
           }
         ]
-  recorded_at: Wed, 21 Aug 2024 01:30:40 GMT
+  recorded_at: Sun, 25 Aug 2024 22:26:30 GMT
 recorded_with: VCR 6.3.1

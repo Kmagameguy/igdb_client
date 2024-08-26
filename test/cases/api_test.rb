@@ -1,9 +1,9 @@
 require "test_helper"
 
-class IgdbClient::ApiClientTest < ::Minitest::Test
-  describe IgdbClient::ApiClient do
-    let(:subject) { IgdbClient::ApiClient }
-    let(:all_endpoints) { IgdbClient::Constants::Endpoints::ALL}
+class IgdbClient::ApiTest < ::Minitest::Test
+  describe IgdbClient::Api do
+    let(:subject) { ::IgdbClient::Api }
+    let(:all_endpoints) { ::IgdbClient::Constants::Endpoints::ALL}
 
     describe ".help" do
       it "is an alias for #help and presents helpful usage information" do
@@ -20,7 +20,7 @@ class IgdbClient::ApiClientTest < ::Minitest::Test
     describe "#get" do
       it "can fetch data from the IGDB" do
         VCR.use_cassette("list_of_game_names") do
-          response = subject.new.get(:games, { fields: "name" })
+          response = subject.new.get(:games, fields: "name")
           sample_game = response.sample
 
           assert_equal 10, response.length
@@ -30,7 +30,7 @@ class IgdbClient::ApiClientTest < ::Minitest::Test
       end
 
       it "raises an error if the requested endpoint is not valid" do
-        assert_raises(subject::InvalidEndpoint, "'invalid_endpoint' is not a recognized request.") do
+        assert_raises(::IgdbClient::Endpoint::Invalid, "\"invalid_endpoint\" is not a recognized request.") do
           subject.new.get(:invalid_endpoint)
         end
       end
