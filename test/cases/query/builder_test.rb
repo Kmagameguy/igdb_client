@@ -35,6 +35,22 @@ module IgdbClient
           it "creates a query with a search term and a selected set of fields" do
             assert_equal subject.new(fields: "name,cover", search: "Sherlock Holmes").build, "fields name,cover;search \"Sherlock Holmes\";"
           end
+
+          it "creates a query with a limit and default fields when not provided" do
+            assert_equal subject.new(limit: 2).build, "fields *;limit 2;"
+          end
+
+          it "creates a query with a limit and a selected set of fields" do
+            assert_equal subject.new(fields: "name,cover", limit: 2).build, "fields name,cover;limit 2;"
+          end
+
+          it "creates a query with a limit, search terms, and a default set of fields when not provided field arguments" do
+            assert_equal subject.new(id: 7, limit: 2).build, "fields *;where id = 7;limit 2;"
+          end
+
+          it "creates a query with a selected set of fields, an id, and a limit" do
+            assert_equal subject.new(fields: "name,cover", id: 7, limit: 2).build, "fields name,cover;where id = 7;limit 2;"
+          end
         end
 
         describe "#search_by_id?" do
@@ -58,8 +74,20 @@ module IgdbClient
             refute subject.new(search: "Sherlock Holmes").search_by_id?
           end
 
+          it "returns false when the only provided argument is a limit" do
+            refute subject.new(limit: 2).search_by_id?
+          end
+
+          it "returns false when fields and a limit are provided without an id" do
+            refute subject.new(fields: "name,cover", limit: 2).search_by_id?
+          end
+
           it "returns false when fields and a search term are provided without an id" do
             refute subject.new(fields: "name,cover", search: "Sherlock Holmes").search_by_id?
+          end
+
+          it "returns false when fields, a search term, and a limit are provided without an id" do
+            refute subject.new(fields: "name,cover", search: "Sherlock Holmes", limit: 7).search_by_id?
           end
         end
       end
