@@ -38,7 +38,7 @@ Run `bin/setup` to finish installation.  This script just checks the current env
 Use the provided `bin/console` script to open a ruby interpreter session with the IGDB Client pre-loaded.  At the simplest level, usage works like this:
 
 ```ruby
-client = IgdbClient::ApiClient.new
+client = IgdbClient::Api.new
 client.get(:games)
 => # Returns an array of 10 games, where each game is represented by an OpenStruct object.  ALL available fields are returned.
 ```
@@ -46,52 +46,58 @@ client.get(:games)
 Each endpoint is represented as a symbol.  To see the available endpoints, run this:
 
 ```ruby
-IgdbClient::ApiClient.help
+IgdbClient::Api.help
 
 # or
 
-client = IgdbClient::ApiClient.new
+client = IgdbClient::Api.new
 client.help
 ```
 
 You can also pass query parameters to the `.get` method:
 
 ```ruby
-client = IgdbClient::ApiClient.new
-client.get(:games, { fields: "name" })
+client = IgdbClient::Api.new
+client.get(:games, fields: "name")
 => # Returns 10 games with only their ID and name fields.
 ```
 
 Pass multiple query parameters with a comma-separated string:
 
 ```ruby
-client = IgdbClient::ApiClient.new
-client.get(:games, { fields: "name,aggregated_rating,hypes" })
+client = IgdbClient::Api.new
+client.get(:games, fields: "name,aggregated_rating,hypes")
 => # Returns 10 games with only their ID, name, aggregated_rating, and hypes.
 ```
 
 You can also retrieve information for specific items by passing an `id` value:
 ```ruby
-client = IgdbClient::ApiClient.new
-client.get(:games, { id: 124961 })
+client = IgdbClient::Api.new
+client.get(:games, id: 124961)
 => # Returns the game whose ID matches the one specified.  Includes all available fields.
 ```
 
 You can pass `id` & `fields` parameters together:
 ```ruby
-client = IgdbClient::ApiClient.new
-client.get(:games, { id: 124961, fields: "name" })
+client = IgdbClient::Api.new
+client.get(:games, id: 124961, fields: "name" )
 => # Returns the specified game and only its ID and Name fields.
 ```
 
 You can search for content by passing a `search` value:
 ```ruby
-client = IgdbClient::ApiClient.new
-client.get(:characters, { search: "Bob", fields: "name"})
+client = IgdbClient::Api.new
+client.get(:characters, search: "Bob", fields: "name")
+```
+
+You can limit the number of retrieved items with the `limit` value:
+```ruby
+client = IgdbClient::Api.new
+client.get(:games, fields: "name", limit: 3)
 ```
 
 ### Other Notes
-As long as you hold a reference to the `Igdb::ApiClient` in memory, it will manage authentication concerns w/Twitch automatically.
+As long as you hold a reference to the `IgdbClient::Api` in memory, it will manage authentication concerns w/Twitch automatically.
 The access token remains in memory until it expires at which point any subsequent request made through the client will silently reauthenticate and process the request.
 
 ## Development
