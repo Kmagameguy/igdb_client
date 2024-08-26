@@ -19,6 +19,7 @@ module IgdbClient
       autoload :Base,   "igdb_client/query/fields/base"
       autoload :Field,  "igdb_client/query/fields/field"
       autoload :Id,     "igdb_client/query/fields/id"
+      autoload :Limit,  "igdb_client/query/fields/limit"
       autoload :Search, "igdb_client/query/fields/search"
     end
   end
