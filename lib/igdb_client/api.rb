@@ -18,10 +18,14 @@ module IgdbClient
 
       self.endpoint = Endpoint.validate(path)
 
-      Request.new.post(endpoint, query_builder)
+      request.post(endpoint, query_builder)
     end
 
     private
+
+    def request
+      @request ||= Request.new
+    end
 
     attr_accessor :endpoint, :query_builder
   end
