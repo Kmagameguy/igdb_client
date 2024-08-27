@@ -23,6 +23,10 @@ module IgdbClient
         @params[:id].field.present?
       end
 
+      def limit_to_one?
+        search_by_id? || @params[:limit].field == 'limit 1;'
+      end
+
       private
 
       def show_redundant_argument_warning
