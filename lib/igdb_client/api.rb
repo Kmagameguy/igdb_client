@@ -18,7 +18,8 @@ module IgdbClient
 
       self.endpoint = Endpoint.validate(path)
 
-      request.post(endpoint, query_builder)
+      response = request.post(endpoint, query_builder)
+      query_builder.limit_to_one? ? response.first : response
     end
 
     private
