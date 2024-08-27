@@ -1,4 +1,7 @@
 # Internet Game Database
+## 1.0.1
+- Fix a regression in which access tokens were being renewed with every request instead of on expiration.
+
 ## 1.0.0
 - BREAKING: Rename `IgdbClient::ApiClient` to `IgdbClient::Api`
 - BREAKING: Use keyword arguments for `IgdbClient::Api.new` instead of a hash
