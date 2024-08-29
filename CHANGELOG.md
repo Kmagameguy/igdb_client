@@ -1,4 +1,7 @@
 # Internet Game Database
+## 2.0.1
+- Fix incorrect version file
+
 ## 2.0.0
 - BREAKING: Return `item` instead of `[item]` when an ID number is part of the `:get` request.
 - BREAKING: Return `item` instead of `[item]` when a `limit` of `1` is specified as part of the `:get` request.
