@@ -21,6 +21,10 @@ module IgdbClient
             assert_equal subject.new(fields: "name,cover").build, "fields name,cover;"
           end
 
+          it "creates a query with a specific list of excluded fields" do
+            assert_equal subject.new(exclude: "screenshots,websites").build, "fields *;exclude screenshots,websites;"
+          end
+
           it "creates a query with a selected id and default field query without field arguments" do
             assert_equal subject.new(id: 7).build, "fields *;where id = (7);"
           end

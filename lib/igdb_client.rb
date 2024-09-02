@@ -13,14 +13,15 @@ module IgdbClient
   end
 
   module Query
-    autoload :Builder, "igdb_client/query/builder"
+    autoload :Builder,   "igdb_client/query/builder"
 
     module Fields
-      autoload :Base,   "igdb_client/query/fields/base"
-      autoload :Field,  "igdb_client/query/fields/field"
-      autoload :Id,     "igdb_client/query/fields/id"
-      autoload :Limit,  "igdb_client/query/fields/limit"
-      autoload :Search, "igdb_client/query/fields/search"
+      autoload :Base,    "igdb_client/query/fields/base"
+      autoload :Exclude, "igdb_client/query/fields/exclude"
+      autoload :Field,   "igdb_client/query/fields/field"
+      autoload :Id,      "igdb_client/query/fields/id"
+      autoload :Limit,   "igdb_client/query/fields/limit"
+      autoload :Search,  "igdb_client/query/fields/search"
     end
   end
 
