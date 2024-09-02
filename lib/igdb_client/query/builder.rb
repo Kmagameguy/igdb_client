@@ -24,7 +24,7 @@ module IgdbClient
       end
 
       def limit_to_one?
-        search_by_id? || @params[:limit].field == 'limit 1;'
+        (search_by_id? && @params[:id].one?) || @params[:limit].one?
       end
 
       private

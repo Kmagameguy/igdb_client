@@ -22,11 +22,15 @@ module IgdbClient
           end
 
           it "creates a query with a selected id and default field query without field arguments" do
-            assert_equal subject.new(id: 7).build, "fields *;where id = 7;"
+            assert_equal subject.new(id: 7).build, "fields *;where id = (7);"
+          end
+
+          it "creates a query with multiple ids" do
+            assert_equal subject.new(id: [7, 13]).build, "fields *;where id = (7,13);"
           end
 
           it "creates a query with a selected id and a selected set of fields" do
-            assert_equal subject.new(fields: "name,cover", id: 7).build, "fields name,cover;where id = 7;"
+            assert_equal subject.new(fields: "name,cover", id: 7).build, "fields name,cover;where id = (7);"
           end
 
           it "creates a query with a search term and default fields when not provided field arguments" do
@@ -47,12 +51,12 @@ module IgdbClient
 
           it "creates a query with a limit, search terms, and a default set of fields when not provided field arguments" do
             subject.any_instance.expects(:show_redundant_argument_warning).once
-            assert_equal subject.new(id: 7, limit: 2).build, "fields *;where id = 7;limit 2;"
+            assert_equal subject.new(id: 7, limit: 2).build, "fields *;where id = (7);limit 2;"
           end
 
           it "creates a query with a selected set of fields, an id, and a limit" do
             subject.any_instance.expects(:show_redundant_argument_warning).once
-            assert_equal subject.new(fields: "name,cover", id: 7, limit: 2).build, "fields name,cover;where id = 7;limit 2;"
+            assert_equal subject.new(fields: "name,cover", id: 7, limit: 2).build, "fields name,cover;where id = (7);limit 2;"
           end
         end
 
@@ -91,6 +95,29 @@ module IgdbClient
 
           it "returns false when fields, a search term, and a limit are provided without an id" do
             refute subject.new(fields: "name,cover", search: "Sherlock Holmes", limit: 7).search_by_id?
+          end
+        end
+
+        describe "#limit_to_one?" do
+          it "returns true if a limit option of 1 is supplied" do
+            assert subject.new(limit: 1).limit_to_one?
+          end
+
+          it "returns true if a single ID is supplied" do
+            assert subject.new(id: 4).limit_to_one?
+            assert subject.new(id: [4]).limit_to_one?
+          end
+
+          it "returns true if for some reason multiple IDs but a limit of 1 is supplied" do
+            assert subject.new(id: [5, 7], limit: 1).limit_to_one?
+          end
+
+          it "returns false if multiple IDs are supplied" do
+            refute subject.new(id: [5, 7]).limit_to_one?
+          end
+
+          it "returns false if a limit greater than 1 is supplied" do
+            refute subject.new(limit: 2).limit_to_one?
           end
         end
       end
