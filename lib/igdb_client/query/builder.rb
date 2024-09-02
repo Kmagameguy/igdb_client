@@ -10,6 +10,7 @@ module IgdbClient
         @fields    = opts[:fields] || ALL_FIELDS
         @id        = opts[:id]
         @limit     = opts[:limit]
+        @offset    = opts[:offset]
         @search    = opts[:search]
         @sort_by   = opts[:sort_by]
         @sort_direction = opts[:sort_direction]
@@ -38,6 +39,10 @@ module IgdbClient
           errors << "Cannot combine Fields with Exclude"
         end
 
+        if @id.present? && @offset.present?
+          errors << "Cannot combine ID with Offset"
+        end
+
         if errors.any?
           raise InvalidArguments, errors.join(", ")
         end
@@ -55,6 +60,7 @@ module IgdbClient
           fields: Fields::Field.new(@fields),
           id: Fields::Id.new(@id),
           limit: Fields::Limit.new(@limit),
+          offset: Fields::Offset.new(@offset),
           search: Fields::Search.new(@search),
           sort: Fields::Sort.new(@sort_by, @sort_direction)
         }
