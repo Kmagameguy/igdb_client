@@ -28,7 +28,7 @@ module IgdbClient
           end
 
           it "creates a query with a specific list of excluded fields" do
-            assert_equal subject.new(exclude: "screenshots,websites").build, "fields *;exclude screenshots,websites;"
+            assert_equal subject.new(exclude: "screenshots,websites").build, "exclude screenshots,websites;fields *;"
           end
 
           it "creates a query with a selected id and default field query without field arguments" do
@@ -67,6 +67,13 @@ module IgdbClient
           it "creates a query with a selected set of fields, an id, and a limit" do
             subject.any_instance.expects(:show_redundant_argument_warning).once
             assert_equal subject.new(fields: "name,cover", id: 7, limit: 2).build, "fields name,cover;where id = (7);limit 2;"
+          end
+
+          it "creates a query with a specific sorting order" do
+            assert_equal(
+              subject.new(fields: "name,cover,aggregated_rating", id: [7, 12], sort_by: "aggregated_rating", sort_direction: :desc).build,
+              "fields name,cover,aggregated_rating;where id = (7,12);sort aggregated_rating desc;"
+            )
           end
         end
 

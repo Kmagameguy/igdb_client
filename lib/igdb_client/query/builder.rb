@@ -6,11 +6,13 @@ module IgdbClient
       ALL_FIELDS = "*".freeze
 
       def initialize(**opts)
-        @fields  = opts[:fields] || ALL_FIELDS
-        @exclude = opts[:exclude]
-        @id      = opts[:id]
-        @search  = opts[:search]
-        @limit   = opts[:limit]
+        @exclude   = opts[:exclude]
+        @fields    = opts[:fields] || ALL_FIELDS
+        @id        = opts[:id]
+        @limit     = opts[:limit]
+        @search    = opts[:search]
+        @sort_by   = opts[:sort_by]
+        @sort_direction = opts[:sort_direction]
 
         raise InvalidArguments, "Cannot combine ID with Search" if @id.present? && @search.present?
         raise InvalidArguments, "Cannot combine Fields with Exclude" if @fields != "*" && @exclude.present?
@@ -33,11 +35,12 @@ module IgdbClient
 
       def build_params
         {
-          fields: Fields::Field.new(@fields),
           exclude: Fields::Exclude.new(@exclude),
+          fields: Fields::Field.new(@fields),
           id: Fields::Id.new(@id),
+          limit: Fields::Limit.new(@limit),
           search: Fields::Search.new(@search),
-          limit: Fields::Limit.new(@limit)
+          sort: Fields::Sort.new(@sort_by, @sort_direction)
         }
       end
 
