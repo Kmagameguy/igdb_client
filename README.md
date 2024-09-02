@@ -120,6 +120,14 @@ client = IgdbClient::Api.new
 client.get(:games, fields: "name", limit: 3)
 ```
 
+You can order the results by field and direction:
+```ruby
+client = IgdbClient::Api.new
+client.get(:games, limit: 15, search: "Super", sort_by: "aggregated_rating", sort_direction: :desc)
+```
+
+Note that the `sort_direction` parameter is optional.  When not specified the default sort order is `:asc` (ascending).
+
 ### Other Notes
 As long as you hold a reference to the `IgdbClient::Api` in memory, it will manage authentication concerns w/Twitch automatically.
 The access token remains in memory until it expires at which point any subsequent request made through the client will silently reauthenticate and process the request.
