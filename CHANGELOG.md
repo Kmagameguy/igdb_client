@@ -1,4 +1,7 @@
-# Internet Game Database
+# Internet Game Database Client Changelog
+
+## 2.2.1
+- Refactor Query::Builder class (no user-facing changes)
 
 ## 2.2.0
 - Support querying fields with a comma-separated exclusion list.  For example:
