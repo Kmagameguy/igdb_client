@@ -8,14 +8,9 @@ module IgdbClient
       "Available endpoints: #{Constants::Endpoints::ALL.join(", ")}"
     end
 
-    def get(path, fields: "*", exclude: nil, id: nil, search: nil, limit: nil)
+    def get(path, **opts)
       self.query_builder =
-        Query::Builder.new(
-          fields: fields,
-          exclude: exclude,
-          id: id,
-          search: search,
-          limit: limit)
+        Query::Builder.new(**opts)
 
       self.endpoint = Endpoint.validate(path)
 
