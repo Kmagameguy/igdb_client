@@ -60,44 +60,6 @@ module IgdbClient
           end
         end
 
-        describe "#search_by_id?" do
-          it "returns true when an 'id' argument is used" do
-            assert subject.new(id: 7).search_by_id?
-          end
-
-          it "returns true when fields and id arguments are provided" do
-            assert subject.new(fields: "name,cover", id: 7).search_by_id?
-          end
-
-          it "returns false when no arguments are provided" do
-            refute subject.new.search_by_id?
-          end
-
-          it "returns false when the only provided argument are fields" do
-            refute subject.new(fields: "name,cover").search_by_id?
-          end
-
-          it "returns false when the only provided argument is a search term" do
-            refute subject.new(search: "Sherlock Holmes").search_by_id?
-          end
-
-          it "returns false when the only provided argument is a limit" do
-            refute subject.new(limit: 2).search_by_id?
-          end
-
-          it "returns false when fields and a limit are provided without an id" do
-            refute subject.new(fields: "name,cover", limit: 2).search_by_id?
-          end
-
-          it "returns false when fields and a search term are provided without an id" do
-            refute subject.new(fields: "name,cover", search: "Sherlock Holmes").search_by_id?
-          end
-
-          it "returns false when fields, a search term, and a limit are provided without an id" do
-            refute subject.new(fields: "name,cover", search: "Sherlock Holmes", limit: 7).search_by_id?
-          end
-        end
-
         describe "#limit_to_one?" do
           it "returns true if a limit option of 1 is supplied" do
             assert subject.new(limit: 1).limit_to_one?

@@ -7,7 +7,7 @@ module IgdbClient
         end
 
         def one?
-          @value == 1
+          @value.present? && @value == 1
         end
       end
     end

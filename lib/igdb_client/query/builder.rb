@@ -19,12 +19,8 @@ module IgdbClient
         @params.values.map(&:field).join("")
       end
 
-      def search_by_id?
-        @params[:id].field.present?
-      end
-
       def limit_to_one?
-        (search_by_id? && @params[:id].one?) || @params[:limit].one?
+        @params[:id].one? || @params[:limit].one?
       end
 
       private

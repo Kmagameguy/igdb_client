@@ -8,7 +8,7 @@ module IgdbClient
         end
 
         def one?
-          Array(@value).one?
+          @value.present? && Array(@value).one?
         end
       end
     end
