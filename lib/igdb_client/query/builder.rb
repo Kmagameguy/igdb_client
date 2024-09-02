@@ -14,9 +14,7 @@ module IgdbClient
         @sort_by   = opts[:sort_by]
         @sort_direction = opts[:sort_direction]
 
-        raise InvalidArguments, "Cannot combine ID with Search" if @id.present? && @search.present?
-        raise InvalidArguments, "Cannot combine Fields with Exclude" if @fields != "*" && @exclude.present?
-        show_redundant_argument_warning if @id.present? && @limit.present?
+        perform_validations
       end
 
       def build
@@ -28,6 +26,24 @@ module IgdbClient
       end
 
       private
+
+      def perform_validations
+        errors = []
+
+        if @id.present? && @search.present?
+          errors << "Cannot combine ID with Search"
+        end
+
+        if @fields != "*" && @exclude.present?
+          errors << "Cannot combine Fields with Exclude"
+        end
+
+        if errors.any?
+          raise InvalidArguments, errors.join(", ")
+        end
+
+        show_redundant_argument_warning if @id.present? && @limit.present?
+      end
 
       def params
         @params ||= build_params

@@ -16,6 +16,12 @@ module IgdbClient
               subject.new(fields: "name", exclude: "screenshots")
             end
           end
+
+          it "explains all the errors when multiple are present" do
+            assert_raises(Builder::InvalidArguments, "Cannot combine ID with Search, Cannot combine Fields with Exclude") do
+              subject.new(id: 1103, search: "Super", fields: "name,cover", exclude: "name")
+            end
+          end
         end
 
         describe "#build" do
