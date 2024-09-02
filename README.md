@@ -70,7 +70,15 @@ client.get(:games, fields: "name,aggregated_rating,hypes")
 => # Returns 10 games with only their ID, name, aggregated_rating, and hypes.
 ```
 
-You can specify expanded attributes for associated fiels with dot-notation (`.`):
+Alternatively you can exclude specific fields with a comma-separated string:
+
+```ruby
+client = IgdbClient::Api.new
+client.get(:games, exclude: "screenshots,websites")
+=> # Returns 10 games with all fields EXCEPT the 'screenshots' and 'websites' fields
+```
+
+You can specify expanded attributes for associated fields with dot-notation (`.`):
 ```ruby
 client = IgdbClient::Api.new
 client.get(:games, fields: "name, platforms.*")
