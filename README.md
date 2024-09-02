@@ -77,6 +77,12 @@ client.get(:games, id: 124961)
 => # Returns the game whose ID matches the one specified.  Includes all available fields.
 ```
 
+You can find multiple items by supplying multiple `id` values in an array:
+```ruby
+client = IgdbClient::Api.new
+client.get(:games, id: [124961, 5])
+=> # Returns an array of OpenStructs for each found ID.  If an ID is not found it will simply be skipped.  Includees all available fields.
+
 You can pass `id` & `fields` parameters together:
 ```ruby
 client = IgdbClient::Api.new
