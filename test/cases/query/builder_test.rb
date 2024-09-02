@@ -10,6 +10,12 @@ module IgdbClient
               subject.new(id: 7, search: "Sherlock Holmes")
             end
           end
+
+          it "raises an error when fields and exclude terms are combined" do
+            assert_raises(Builder::InvalidArguments) do
+              subject.new(fields: "name", exclude: "screenshots")
+            end
+          end
         end
 
         describe "#build" do
@@ -19,6 +25,10 @@ module IgdbClient
 
           it "creates a query with a selected set of fields" do
             assert_equal subject.new(fields: "name,cover").build, "fields name,cover;"
+          end
+
+          it "creates a query with a specific list of excluded fields" do
+            assert_equal subject.new(exclude: "screenshots,websites").build, "fields *;exclude screenshots,websites;"
           end
 
           it "creates a query with a selected id and default field query without field arguments" do

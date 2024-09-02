@@ -12,7 +12,7 @@ module IgdbClient
         end
 
         def build
-          raise NoMethodError, "stringify must be implemented by subclasses."
+          raise NoMethodError, "build must be implemented by subclasses."
         end
 
         protected

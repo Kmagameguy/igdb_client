@@ -3,12 +3,14 @@ module IgdbClient
     class Builder
       class InvalidArguments < StandardError; end
 
-      def initialize(fields: "*", id: nil, search: nil, limit: nil)
+      def initialize(fields: "*", exclude: nil, id: nil, search: nil, limit: nil)
         raise InvalidArguments, "Cannot combine ID with Search" if id.present? && search.present?
+        raise InvalidArguments, "Cannot combine Fields with Exclude" if fields != "*" && exclude.present?
         show_redundant_argument_warning if id.present? && limit.present?
 
         @params = {
           fields: Fields::Field.new(fields),
+          exclude: Fields::Exclude.new(exclude),
           id: Fields::Id.new(id),
           search: Fields::Search.new(search),
           limit: Fields::Limit.new(limit)

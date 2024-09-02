@@ -1,4 +1,14 @@
 # Internet Game Database
+
+## 2.2.0
+- Support querying fields with a comma-separated exclusion list.  For example:
+
+```ruby
+IgdbClient::Api.new.get(:games, exclude: "screenshots,websites")
+```
+
+This returns all fields _except_ the screenshots and websites arrays.
+
 ## 2.1.0
 - Support searching for multiple IDs in a single query.  For example:
 

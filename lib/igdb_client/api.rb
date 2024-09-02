@@ -8,10 +8,11 @@ module IgdbClient
       "Available endpoints: #{Constants::Endpoints::ALL.join(", ")}"
     end
 
-    def get(path, fields: "*", id: nil, search: nil, limit: nil)
+    def get(path, fields: "*", exclude: nil, id: nil, search: nil, limit: nil)
       self.query_builder =
         Query::Builder.new(
           fields: fields,
+          exclude: exclude,
           id: id,
           search: search,
           limit: limit)
