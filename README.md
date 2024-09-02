@@ -70,6 +70,16 @@ client.get(:games, fields: "name,aggregated_rating,hypes")
 => # Returns 10 games with only their ID, name, aggregated_rating, and hypes.
 ```
 
+You can specify expanded attributes for associated fiels with dot-notation (`.`):
+```ruby
+client = IgdbClient::Api.new
+client.get(:games, fields: "name, platforms.*")
+=> # Returns 10 games with only their ID, name, and platforms field, where the platforms response includes ALL platforms data, not just the platform ID
+
+client.get(:games, fields: "name, platforms.name")
+=> # Returns 10 games with only their ID, name, and the ID + Name of each platform the game supports"
+```
+
 You can also retrieve information for specific items by passing an `id` value:
 ```ruby
 client = IgdbClient::Api.new
