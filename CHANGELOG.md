@@ -1,5 +1,14 @@
 # Internet Game Database Client Changelog
 
+## 2.3.0
+- Support sorting returned lists by property and direction.  For example:
+
+```ruby
+IgdbClient::Api.new.get(:games, limit: 15, search: "Super", sort_by: "aggregated_rating", sort_direction: :desc)
+```
+
+This returns up to 15 games whose search result matches "Super", and sorts them in descending order by their `aggregated_rating`.  Note that if `sort_direction` is not specified then sorting defaults to `ascending`.
+
 ## 2.2.1
 - Refactor Query::Builder class (no user-facing changes)
 
