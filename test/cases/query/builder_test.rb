@@ -10,6 +10,12 @@ module IgdbClient
               subject.new(id: 7, search: "Sherlock Holmes")
             end
           end
+
+          it "raises an error when fields and exclude terms are combined" do
+            assert_raises(Builder::InvalidArguments) do
+              subject.new(fields: "name", exclude: "screenshots")
+            end
+          end
         end
 
         describe "#build" do
