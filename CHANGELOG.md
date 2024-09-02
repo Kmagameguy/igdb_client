@@ -1,5 +1,14 @@
 # Internet Game Database Client Changelog
 
+## 2.4.0
+- Support pagination feature with `offset` field:
+
+```ruby
+IgdbClient::Api.new.get(:games, limit: 15, offset: 20)
+```
+
+This returns the first 15 results after the first 20.
+
 ## 2.3.0
 - Support sorting returned lists by property and direction.  For example:
 

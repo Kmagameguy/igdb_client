@@ -120,6 +120,14 @@ client = IgdbClient::Api.new
 client.get(:games, fields: "name", limit: 3)
 ```
 
+You can offset the results, too:
+```ruby
+client = IgdbClient::Api.new
+client.get(:games, fields: "name", limit: 3, offset: 7)
+```
+
+This example skips over the first 7 results and returns the next 3.
+
 You can order the results by field and direction:
 ```ruby
 client = IgdbClient::Api.new

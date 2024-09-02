@@ -21,6 +21,7 @@ module IgdbClient
       autoload :Field,   "igdb_client/query/fields/field"
       autoload :Id,      "igdb_client/query/fields/id"
       autoload :Limit,   "igdb_client/query/fields/limit"
+      autoload :Offset,  "igdb_client/query/fields/offset"
       autoload :Search,  "igdb_client/query/fields/search"
       autoload :Sort,    "igdb_client/query/fields/sort"
     end

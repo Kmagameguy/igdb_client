@@ -16,6 +16,18 @@ module IgdbClient
               subject.new(fields: "name", exclude: "screenshots")
             end
           end
+
+          it "raises an error when id and offset terms are combined" do
+            assert_raises(Builder::InvalidArguments) do
+              subject.new(id: 7, offset: 2)
+            end
+          end
+
+          it "explains all the errors when multiple are present" do
+            assert_raises(Builder::InvalidArguments, "Cannot combine ID with Search, Cannot combine Fields with Exclude, Cannot combine ID with Offset") do
+              subject.new(id: 1103, search: "Super", fields: "name,cover", exclude: "name", offset: 7)
+            end
+          end
         end
 
         describe "#build" do
