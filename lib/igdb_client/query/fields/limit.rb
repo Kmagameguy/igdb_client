@@ -5,6 +5,10 @@ module IgdbClient
         def build
           @field = "limit #{@value};"
         end
+
+        def one?
+          @value.present? && @value == 1
+        end
       end
     end
   end

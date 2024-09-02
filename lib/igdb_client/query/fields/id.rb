@@ -3,7 +3,12 @@ module IgdbClient
     module Fields
       class Id < ::IgdbClient::Query::Fields::Base
         def build
-          @field = "where id = #{@value};"
+          joined_values = Array(@value).join(",")
+          @field = "where id = (#{joined_values});"
+        end
+
+        def one?
+          @value.present? && Array(@value).one?
         end
       end
     end
