@@ -1,4 +1,13 @@
 # Internet Game Database
+## 2.1.0
+- Support searching for multiple IDs in a single query.  For example:
+
+```ruby
+IgdbClient::Api.new.get(:games, id: [1103, 5])
+```
+
+This returns an array of OpenStructs for each entry found.  Any IDs not found will simply be dropped.
+
 ## 2.0.1
 - Fix incorrect version file
 
