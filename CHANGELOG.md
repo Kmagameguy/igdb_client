@@ -1,5 +1,13 @@
 # Internet Game Database Client Changelog
 
+## 2.5.0
+- Support advanced filtering:
+```ruby
+IgdbClient::Api.new.get(:games, fields: "name", filter: "where rating >= 80")
+```
+
+See the official [IGDB#filters](https://api-docs.igdb.com/#filters) documentation for more details.
+
 ## 2.4.0
 - Support pagination feature with `offset` field:
 
