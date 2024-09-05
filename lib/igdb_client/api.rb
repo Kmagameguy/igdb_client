@@ -9,8 +9,7 @@ module IgdbClient
     end
 
     def get(path, **opts)
-      self.query_builder =
-        Query::Builder.new(**opts)
+      self.query_builder = Query::Builder.new(**opts)
 
       self.endpoint = Endpoint.validate(path)
 
