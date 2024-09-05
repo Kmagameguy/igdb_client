@@ -8,6 +8,7 @@ module IgdbClient
       def initialize(**opts)
         @exclude   = opts[:exclude]
         @fields    = opts[:fields] || ALL_FIELDS
+        @filter    = opts[:filter]
         @id        = opts[:id]
         @limit     = opts[:limit]
         @offset    = opts[:offset]
@@ -43,6 +44,10 @@ module IgdbClient
           errors << "Cannot combine ID with Offset"
         end
 
+        if @id.present? && @filter.present?
+          errors << "Cannot combine ID with Filters"
+        end
+
         if errors.any?
           raise InvalidArguments, errors.join(", ")
         end
@@ -58,6 +63,7 @@ module IgdbClient
         {
           exclude: Fields::Exclude.new(@exclude),
           fields: Fields::Field.new(@fields),
+          filter: Fields::Filter.new(@filter),
           id: Fields::Id.new(@id),
           limit: Fields::Limit.new(@limit),
           offset: Fields::Offset.new(@offset),
