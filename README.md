@@ -136,6 +136,14 @@ client.get(:games, limit: 15, search: "Super", sort_by: "aggregated_rating", sor
 
 Note that the `sort_direction` parameter is optional.  When not specified the default sort order is `:asc` (ascending).
 
+The client accepts advanced filtering as defined by the IGDB API:
+```ruby
+client = IgdbClient::Api.new
+client.get(:games, fields: "name", filter: "where rating >= 80")
+```
+
+See the [IGDB API Documentation for filters](https://api-docs.igdb.com/#filters) for more information.  The client does not currently perform any validations against the filter query.
+
 ### Other Notes
 As long as you hold a reference to the `IgdbClient::Api` in memory, it will manage authentication concerns w/Twitch automatically.
 The access token remains in memory until it expires at which point any subsequent request made through the client will silently reauthenticate and process the request.

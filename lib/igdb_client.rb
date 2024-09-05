@@ -19,6 +19,7 @@ module IgdbClient
       autoload :Base,    "igdb_client/query/fields/base"
       autoload :Exclude, "igdb_client/query/fields/exclude"
       autoload :Field,   "igdb_client/query/fields/field"
+      autoload :Filter,  "igdb_client/query/fields/filter"
       autoload :Id,      "igdb_client/query/fields/id"
       autoload :Limit,   "igdb_client/query/fields/limit"
       autoload :Offset,  "igdb_client/query/fields/offset"

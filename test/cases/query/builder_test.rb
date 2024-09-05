@@ -23,6 +23,12 @@ module IgdbClient
             end
           end
 
+          it "raises an error when id and filter terms are combined" do
+            assert_raises(Builder::InvalidArguments) do
+              subject.new(id: 7, filter: "where rating >= 80")
+            end
+          end
+
           it "explains all the errors when multiple are present" do
             assert_raises(Builder::InvalidArguments, "Cannot combine ID with Search, Cannot combine Fields with Exclude, Cannot combine ID with Offset") do
               subject.new(id: 1103, search: "Super", fields: "name,cover", exclude: "name", offset: 7)
