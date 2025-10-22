@@ -1,4 +1,6 @@
 # Internet Game Database Client Changelog
+# 2.6.2
+- Add `game_status` endpoint
 
 # 2.6.1
 - Support ruby 3.4.7

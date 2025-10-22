@@ -27,6 +27,7 @@ module IgdbClient
       GAME_ENGINE_LOGOS = :game_engine_logos
       GAME_LOCALIZATIONS = :game_localizations
       GAME_MODES = :game_modes
+      GAME_STATUS = :game_statuses
       GAME_TYPES = :game_types
       GAME_VERSIONS = :game_versions
       GAME_VERSION_FEATURES = :game_version_features
@@ -85,6 +86,7 @@ module IgdbClient
         GAME_ENGINE_LOGOS,
         GAME_LOCALIZATIONS,
         GAME_MODES,
+        GAME_STATUS,
         GAME_TYPES,
         GAME_VERSIONS,
         GAME_VERSION_FEATURES,
