@@ -1,5 +1,9 @@
 # Internet Game Database Client Changelog
 
+# 2.6.1
+- Support ruby 3.4.7
+- Add `game_type` endpoint
+
 ## 2.6.0
 - Support ruby 3.3.6
 - Make OpenStruct an explicit dependency
