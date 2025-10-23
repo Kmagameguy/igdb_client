@@ -16,6 +16,13 @@ module IgdbClient
         raise Invalid, "\"#{path}\" is not a recognized request."
       end
 
+      if deprecated_endpoint?(path.to_sym)
+        puts "DEPRECATION WARNING: age_rating_content_descriptions endpoint is deprecated."
+        puts "Please use age_rating_content_descriptions_v2 instead."
+        puts "This endpoint will be removed in a future update of the IGDB Client."
+        puts "Set SUPPRESS_DEPRECATION_WARNINGS to \"true\" to silence these notifications."
+      end
+
       path
     end
 
@@ -23,6 +30,12 @@ module IgdbClient
 
     def unknown_endpoint?(item)
       !all_endpoints.include?(item)
+    end
+
+    def deprecated_endpoint?(item)
+      return false if ENV["SUPPRESS_DEPRECATION_WARNINGS"] == "true"
+
+      item == IgdbClient::Constants::Endpoints::AGE_RATING_CONTENT_DESCRIPTIONS
     end
 
     def all_endpoints

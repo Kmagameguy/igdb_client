@@ -1,4 +1,8 @@
 # Internet Game Database Client Changelog
+# 2.6.3
+- Adds support for remaining endpoints that were missing
+- Raises a deprecation warning when using a deprecated endpoint
+
 # 2.6.2
 - Add `game_status` endpoint
 

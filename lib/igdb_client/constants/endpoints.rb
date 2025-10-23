@@ -2,11 +2,18 @@ module IgdbClient
   module Constants
     class Endpoints
       AGE_RATINGS = :age_ratings
-      AGE_RATING_CONTENT_DESCRIPTIONS = :age_rating_content_descriptions
+      AGE_RATING_CATEGORIES = :age_rating_categories
+      AGE_RATING_CONTENT_DESCRIPTIONS = :age_rating_content_descriptions # Deprecated
+      AGE_RATING_CONTENT_DESCRIPTIONS_V2 = :age_rating_content_descriptions_v2
+      AGE_RATING_CONTENT_DESCRIPTION_TYPES = :age_rating_content_description_types
+      AGE_RATING_ORGANIZATIONS = :age_rating_organizations
       ALTERNATIVE_NAMES = :alternative_names
       ARTWORKS = :artworks
+      ARTWORK_TYPES = :artwork_types
       CHARACTERS = :characters
+      CHARACTER_GENDERS = :character_genders
       CHARACTER_MUG_SHOTS = :character_mug_shots
+      CHARACTER_SPECIES = :character_species
       COLLECTIONS = :collections
       COLLECTION_MEMBERSHIPS = :collection_memberships
       COLLECTION_MEMBERSHIP_TYPES = :collection_membership_types
@@ -15,19 +22,24 @@ module IgdbClient
       COLLECTION_TYPES = :collection_types
       COMPANIES = :companies
       COMPANY_LOGOS = :company_logos
+      COMPANY_STATUSES = :company_statuses
       COMPANY_WEBSITES = :company_websites
       COVERS = :covers
+      DATE_FORMATS = :date_formats
       EVENTS = :events
       EVENT_LOGOS = :event_logos
       EVENT_NETWORKS = :event_networks
       EXTERNAL_GAMES = :external_games
+      EXTERNAL_GAME_SOURCES = :external_game_sources
       FRANCHISES = :franchises
       GAMES = :games
       GAME_ENGINES = :game_engines
       GAME_ENGINE_LOGOS = :game_engine_logos
       GAME_LOCALIZATIONS = :game_localizations
       GAME_MODES = :game_modes
+      GAME_RELEASE_FORMATS = :game_release_formats
       GAME_STATUS = :game_statuses
+      GAME_TIME_TO_BEATS = :game_time_to_beats
       GAME_TYPES = :game_types
       GAME_VERSIONS = :game_versions
       GAME_VERSION_FEATURES = :game_version_features
@@ -53,71 +65,15 @@ module IgdbClient
       POPULARITY_TYPES = :popularity_types
       REGIONS = :regions
       RELEASE_DATES = :release_dates
+      RELEASE_DATE_REGIONS = :release_date_regions
       RELEASE_DATE_STATUSES = :release_date_statuses
       SCREENSHOTS = :screenshots
       SEARCH = :search
       THEMES = :themes
       WEBSITES = :websites
+      WEBSITE_TYPES = :website_types
 
-      ALL = [
-        AGE_RATINGS,
-        AGE_RATING_CONTENT_DESCRIPTIONS,
-        ALTERNATIVE_NAMES,
-        ARTWORKS,
-        CHARACTERS,
-        CHARACTER_MUG_SHOTS,
-        COLLECTIONS,
-        COLLECTION_MEMBERSHIPS,
-        COLLECTION_MEMBERSHIP_TYPES,
-        COLLECTION_RELATIONS,
-        COLLECTION_RELATION_TYPES,
-        COLLECTION_TYPES,
-        COMPANIES,
-        COMPANY_LOGOS,
-        COMPANY_WEBSITES,
-        COVERS,
-        EVENTS,
-        EVENT_LOGOS,
-        EVENT_NETWORKS,
-        EXTERNAL_GAMES,
-        FRANCHISES,
-        GAMES,
-        GAME_ENGINES,
-        GAME_ENGINE_LOGOS,
-        GAME_LOCALIZATIONS,
-        GAME_MODES,
-        GAME_STATUS,
-        GAME_TYPES,
-        GAME_VERSIONS,
-        GAME_VERSION_FEATURES,
-        GAME_VERSION_FEATURE_VALUES,
-        GAME_VIDEOS,
-        GENRES,
-        INVOLVED_COMPANIES,
-        KEYWORDS,
-        LANGUAGES,
-        LANGUAGE_SUPPORTS,
-        LANGUAGE_SUPPORT_TYPES,
-        MULTIPLAYER_MODES,
-        NETWORK_TYPES,
-        PLATFORMS,
-        PLATFORM_FAMILIES,
-        PLATFORM_LOGOS,
-        PLATFORM_VERSIONS,
-        PLATFORM_VERSION_COMPANIES,
-        PLATFORM_VERSION_RELEASE_DATES,
-        PLATFORM_WEBSITES,
-        PLAYER_PERSPECTIVES,
-        POPULARITY_PRIMITIVES,
-        POPULARITY_TYPES,
-        REGIONS,
-        RELEASE_DATES,
-        RELEASE_DATE_STATUSES,
-        SCREENSHOTS,
-        SEARCH,
-        THEMES,
-        WEBSITES
-      ].freeze
+      ALL = self.constants(false).reject { |constant| constant == :ALL }.map(&self.method(:const_get))
     end
   end
 end
