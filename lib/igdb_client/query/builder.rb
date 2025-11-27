@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 module IgdbClient
   module Query
     class Builder
       class InvalidArguments < StandardError; end
 
-      ALL_FIELDS = "*".freeze
+      ALL_FIELDS = "*"
 
       def initialize(**opts)
         @exclude   = opts[:exclude]

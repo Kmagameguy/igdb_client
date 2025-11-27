@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
+require "test_helper"
+
 module IgdbClient
   class EndpointTest < ::Minitest::Test
     describe IgdbClient::Endpoint do

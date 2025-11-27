@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module IgdbClient
   module Twitch
     class OauthClient

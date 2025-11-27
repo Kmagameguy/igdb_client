@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
+require "test_helper"
+
 module IgdbClient
   class RequestTest < ::Minitest::Test
     describe IgdbClient::Request do
