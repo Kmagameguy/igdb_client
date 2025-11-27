@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module IgdbClient
   class Request
     class Error < StandardError; end
@@ -17,11 +19,9 @@ module IgdbClient
     private
 
     def handle_response(response)
-      if response.success?
-        JSON.parse(response.body, object_class: OpenStruct)
-      else
-        raise Error, "An error occurred: #{response.body}"
-      end
+      raise Error, "An error occurred: #{response.body}" unless response.success?
+
+      JSON.parse(response.body, object_class: OpenStruct)
     end
 
     def twitch_oauth_client

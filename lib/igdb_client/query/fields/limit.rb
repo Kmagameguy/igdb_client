@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module IgdbClient
   module Query
     module Fields
@@ -21,9 +23,9 @@ module IgdbClient
         def validate_field
           @field = "" unless @value.present?
 
-          if @value.to_i > MAX_LIMIT
-            raise TooManyRecordsError, "Max limit is #{MAX_LIMIT}."
-          end
+          return true unless @value.to_i > MAX_LIMIT
+
+          raise TooManyRecordsError, "Max limit is #{MAX_LIMIT}."
         end
       end
     end

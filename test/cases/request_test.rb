@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
+require "test_helper"
+
 module IgdbClient
   class RequestTest < ::Minitest::Test
     describe IgdbClient::Request do
@@ -8,8 +12,9 @@ module IgdbClient
         it "returns an array of OpenStruct objects from the post request" do
           VCR.use_cassette("request_post") do
             response = subject.new.post(:games, query_builder)
-            assert response.is_a?(Array)
-            assert response.first.is_a?(OpenStruct)
+
+            assert_kind_of Array, response
+            assert_kind_of OpenStruct, response.first
           end
         end
 

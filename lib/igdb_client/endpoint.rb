@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module IgdbClient
   class Endpoint
     class Invalid < StandardError; end
@@ -12,9 +14,7 @@ module IgdbClient
     def validate(path)
       path = path&.to_sym || :nil
 
-      if unknown_endpoint?(path.to_sym)
-        raise Invalid, "\"#{path}\" is not a recognized request."
-      end
+      raise Invalid, "\"#{path}\" is not a recognized request." if unknown_endpoint?(path.to_sym)
 
       if deprecated_endpoint?(path.to_sym)
         puts "DEPRECATION WARNING: age_rating_content_descriptions endpoint is deprecated."

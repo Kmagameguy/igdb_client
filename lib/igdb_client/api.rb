@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module IgdbClient
   class Api
     def self.help
@@ -5,7 +7,7 @@ module IgdbClient
     end
 
     def help
-      "Available endpoints: #{Constants::Endpoints::ALL.join(", ")}"
+      "Available endpoints: #{Constants::Endpoints::ALL.join(', ')}"
     end
 
     def get(path, **opts)

@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 module IgdbClient
   module Query
     class Builder
       class InvalidArguments < StandardError; end
 
-      ALL_FIELDS = "*".freeze
+      ALL_FIELDS = "*"
 
       def initialize(**opts)
         @exclude   = opts[:exclude]
@@ -20,7 +22,7 @@ module IgdbClient
       end
 
       def build
-        params.values.map(&:field).join("")
+        params.values.map(&:field).join
       end
 
       def limit_to_one?
@@ -30,29 +32,31 @@ module IgdbClient
       private
 
       def perform_validations
-        errors = []
+        @errors = []
+        validate_id_without_search
+        validate_fields_without_excludes
+        validate_id_without_offset
+        validate_id_without_filters
 
-        if @id.present? && @search.present?
-          errors << "Cannot combine ID with Search"
-        end
-
-        if @fields != "*" && @exclude.present?
-          errors << "Cannot combine Fields with Exclude"
-        end
-
-        if @id.present? && @offset.present?
-          errors << "Cannot combine ID with Offset"
-        end
-
-        if @id.present? && @filter.present?
-          errors << "Cannot combine ID with Filters"
-        end
-
-        if errors.any?
-          raise InvalidArguments, errors.join(", ")
-        end
+        raise InvalidArguments, @errors.join(", ") if @errors.any?
 
         show_redundant_argument_warning if @id.present? && @limit.present?
+      end
+
+      def validate_id_without_search
+        @errors << "Cannot combine ID with Search" if @id.present? && @search.present?
+      end
+
+      def validate_fields_without_excludes
+        @errors << "Cannot combine Fields with Exclude" if @fields != "*" && @exclude.present?
+      end
+
+      def validate_id_without_offset
+        @errors << "Cannot combine ID with Offset" if @id.present? && @offset.present?
+      end
+
+      def validate_id_without_filters
+        @errors << "Cannot combine ID with Filters" if @id.present? && @filter.present?
       end
 
       def params

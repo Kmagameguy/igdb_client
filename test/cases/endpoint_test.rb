@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
+require "test_helper"
+
 module IgdbClient
   class EndpointTest < ::Minitest::Test
     describe IgdbClient::Endpoint do
@@ -6,7 +10,7 @@ module IgdbClient
 
       describe ".validate" do
         it "can validate a real endpoint" do
-          assert_equal subject.validate(:games), :games
+          assert_equal :games, subject.validate(:games)
         end
 
         it "raises an error if an endpoint does not exist" do
@@ -18,7 +22,7 @@ module IgdbClient
 
       describe "#validate" do
         it "can validate a real endpoint" do
-          assert_equal subject.new.validate(:games), :games
+          assert_equal :games, subject.new.validate(:games)
         end
 
         it "raises an error if an endpoint does not exist" do

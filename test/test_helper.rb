@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "bundler"
 require "dotenv"
 Bundler.require :development, :test
@@ -19,8 +21,8 @@ VCR.configure do |vcr|
   vcr.allow_http_connections_when_no_cassette = true
   vcr.default_cassette_options = {
     record: :once,
-    match_requests_on: [:method, :host, :path, :query]
+    match_requests_on: %i[method host path query]
   }
-  vcr.filter_sensitive_data("<TWITCH_API_CLIENT_ID>")     { ENV["TWITCH_API_CLIENT_ID"] }
-  vcr.filter_sensitive_data("<TWITCH_API_CLIENT_SECRET>") { ENV["TWITCH_API_CLIENT_SECRET"] }
+  vcr.filter_sensitive_data("<TWITCH_API_CLIENT_ID>")     { ENV.fetch("TWITCH_API_CLIENT_ID", nil) }
+  vcr.filter_sensitive_data("<TWITCH_API_CLIENT_SECRET>") { ENV.fetch("TWITCH_API_CLIENT_SECRET", nil) }
 end

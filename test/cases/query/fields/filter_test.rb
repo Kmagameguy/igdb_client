@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
+require "test_helper"
+
 module IgdbClient
   module Query
     module Fields
@@ -7,7 +11,7 @@ module IgdbClient
 
           describe "#field" do
             it "appends a semicolon but otherwise does not validate the input" do
-              assert_equal subject.new("where rating >= 80").field, "where rating >= 80;"
+              assert_equal "where rating >= 80;", subject.new("where rating >= 80").field
             end
           end
         end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module IgdbClient
   module Constants
     class Endpoints
@@ -73,7 +75,7 @@ module IgdbClient
       WEBSITES = :websites
       WEBSITE_TYPES = :website_types
 
-      ALL = self.constants(false).reject { |constant| constant == :ALL }.map(&self.method(:const_get))
+      ALL = constants(false).reject { |constant| constant == :ALL }.map { |constant| const_get(constant) }
     end
   end
 end

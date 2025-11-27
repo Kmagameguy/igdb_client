@@ -1,4 +1,9 @@
 # Internet Game Database Client Changelog
+# 2.7.0
+- Potentially Breaking Change: Enforce minimum ruby version of 2.6.  This was the minimum version we were already testing against, this change just makes the support cutoff clear/official.
+- Adds rubocop config for development
+- Addresses existing rubocop violations
+
 # 2.6.3
 - Adds support for remaining endpoints that were missing
 - Raises a deprecation warning when using a deprecated endpoint

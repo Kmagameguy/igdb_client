@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "pathname"
 require_relative "lib/igdb_client/version"
 
@@ -10,26 +12,18 @@ Gem::Specification.new do |spec|
   spec.summary       = "A Ruby client for the Internet Game Database"
   spec.homepage      = "https://github.com/kmagameguy/igdb_client"
 
-  spec.files         = ::Dir.glob(::Pathname.new(__dir__).join("lib/**/**")).reject do |file|
-    file.match(%r{^(test)/}) || ::File.directory?(file)
+  spec.files         = Dir.glob(Pathname.new(__dir__).join("lib/**/**")).reject do |file|
+    file.match(%r{^(test)/}) || File.directory?(file)
   end
 
   spec.bindir        = "bin"
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
+  spec.required_ruby_version = ">= 2.6"
+
+  spec.add_dependency("activesupport")
   spec.add_dependency("dotenv")
   spec.add_dependency("faraday")
-  spec.add_dependency("activesupport")
   spec.add_dependency("ostruct")
-
-  spec.add_development_dependency("rake")
-  spec.add_development_dependency("vcr")
-  spec.add_development_dependency("webmock")
-  spec.add_development_dependency("minitest")
-  spec.add_development_dependency("minitest-reporters")
-  spec.add_development_dependency("minitest-focus")
-  spec.add_development_dependency("bundler")
-  spec.add_development_dependency("pry")
-  spec.add_development_dependency("pry-byebug")
 end

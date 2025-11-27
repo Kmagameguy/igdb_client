@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module IgdbClient
   module Query
     module Fields
@@ -23,16 +25,17 @@ module IgdbClient
         protected
 
         def validate_field
-          raise InvalidValue if (@value.include?(",") || @value.is_a?(Array))
+          raise InvalidValue if @value.include?(",") || @value.is_a?(Array)
+
           @field = "" unless @value.present?
 
           validate_order
         end
 
         def validate_order
-          if invalid_order_direction?
-            raise InvalidOrder, "Accepted order directions are ':asc' and ':desc'.  Couldn't understand #{@order}."
-          end
+          return true unless invalid_order_direction?
+
+          raise InvalidOrder, "Accepted order directions are ':asc' and ':desc'.  Couldn't understand #{@order}."
         end
 
         def invalid_order_direction?
@@ -40,7 +43,7 @@ module IgdbClient
         end
 
         def valid_order_direction?
-          [:asc, :desc].include?(@order)
+          %i[asc desc].include?(@order)
         end
       end
     end

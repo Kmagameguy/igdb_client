@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module IgdbClient
   module Twitch
     class OauthClient
@@ -11,18 +13,9 @@ module IgdbClient
       def access_token
         return @access_token unless @access_token.nil? || Time.current >= token_expiration_date
 
-        response = Faraday.post("#{oauth_url}") do |f|
-          f.headers["Content-Type"] = "application/json"
-          f.body = request_body
-        end
-
-        if response.success?
-          token_data = JSON.parse(response.body, object_class: OpenStruct)
-          self.token_expiration_date = Time.current + token_data.expires_in
-          @access_token = token_data.access_token
-        else
-          raise Error, "Couldn't retrieve Twitch access token"
-        end
+        token_data = request_new_token
+        self.token_expiration_date = Time.current + token_data.expires_in
+        @access_token = token_data.access_token
       end
 
       def id
@@ -30,6 +23,17 @@ module IgdbClient
       end
 
       private
+
+      def request_new_token
+        response = Faraday.post(oauth_url.to_s) do |f|
+          f.headers["Content-Type"] = "application/json"
+          f.body = request_body
+        end
+
+        raise Error, "Couldn't retrieve Twitch access token" unless response.success?
+
+        JSON.parse(response.body, object_class: OpenStruct)
+      end
 
       def request_body
         {
