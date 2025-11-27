@@ -9,7 +9,7 @@ class IgdbClient::Twitch::OauthClientTest < Minitest::Test
     describe "#access_token" do
       it "can retrieve an access token from Twitch.tv" do
         VCR.use_cassette("get_twitch_access_token") do
-          assert !!subject.new.access_token
+          refute_nil subject.new.access_token
         end
       end
 
@@ -24,7 +24,7 @@ class IgdbClient::Twitch::OauthClientTest < Minitest::Test
 
     describe "#id" do
       it "exposes the client_id from .env" do
-        assert !!subject.new.id
+        refute_nil subject.new.id
       end
     end
   end
