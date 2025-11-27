@@ -34,7 +34,8 @@ module IgdbClient
           end
 
           it "explains all the errors when multiple are present" do
-            assert_raises(Builder::InvalidArguments, "Cannot combine ID with Search, Cannot combine Fields with Exclude, Cannot combine ID with Offset") do
+            assert_raises(Builder::InvalidArguments,
+                          "Cannot combine ID with Search, Cannot combine Fields with Exclude, Cannot combine ID with Offset") do
               subject.new(id: 1103, search: "Super", fields: "name,cover", exclude: "name", offset: 7)
             end
           end

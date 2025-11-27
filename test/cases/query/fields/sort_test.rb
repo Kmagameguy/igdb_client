@@ -26,7 +26,8 @@ module IgdbClient
 
             it "raises an error if the sort order parameter is not valid" do
               sort_me = :sort_me
-              assert_raises(IgdbClient::Query::Fields::Sort::InvalidOrder, "Accepted order directions are ':asc' and ':desc'.  Couldn't understand #{sort_me}") do
+              assert_raises(IgdbClient::Query::Fields::Sort::InvalidOrder,
+                            "Accepted order directions are ':asc' and ':desc'.  Couldn't understand #{sort_me}") do
                 subject.new("aggregated_rating", sort_me).field
               end
             end
