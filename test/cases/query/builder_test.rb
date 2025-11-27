@@ -34,8 +34,10 @@ module IgdbClient
           end
 
           it "explains all the errors when multiple are present" do
-            assert_raises(Builder::InvalidArguments,
-                          "Cannot combine ID with Search, Cannot combine Fields with Exclude, Cannot combine ID with Offset") do
+            expected_error =
+              "Cannot combine ID with Search, Cannot combine Fields with Exclude, Cannot combine ID with Offset"
+
+            assert_raises(Builder::InvalidArguments, expected_error) do
               subject.new(id: 1103, search: "Super", fields: "name,cover", exclude: "name", offset: 7)
             end
           end
@@ -83,7 +85,7 @@ module IgdbClient
             assert_equal "fields name,cover;limit 2;", subject.new(fields: "name,cover", limit: 2).build
           end
 
-          it "creates a query with a limit, search terms, and a default set of fields when not provided field arguments" do
+          it "creates a query with a limit, search terms, and default fields when not provided field arguments" do
             subject.any_instance.expects(:show_redundant_argument_warning).once
 
             assert_equal "fields *;where id = (7);limit 2;", subject.new(id: 7, limit: 2).build
