@@ -1,0 +1,41 @@
+plugins:
+  - rubocop-minitest
+  - rubocop-performance
+  - rubocop-rake
+
+AllCops:
+  NewCops: enable
+
+Gemspec/RequireMFA:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - igdb_client.gemspec
+    - test/**/*
+
+Metrics/ClassLength:
+  Exclude:
+    - test/**/*
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Exclude:
+    - .irbrc
+    - Gemfile
+    - Rakefile
+    - bin/*
+
+Style/OpenStructUse:
+  Enabled: false
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+  SupportedStyles:
+    - single_quotes
+    - double_quotes
