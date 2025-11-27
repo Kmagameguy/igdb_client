@@ -6,6 +6,7 @@ A Ruby client for the [Internet Game Database](https://www.igdb.com/)
 
 ## Pre-requisites
 See the [IGDB Getting Started Guide](https://api-docs.igdb.com/#getting-started).  You'll need:
+1. Ruby (minimum supported version is 2.6)
 1. A Twitch account w/2FA
 1. A registered twitch application in the developer portal
 1. A client id for the application
