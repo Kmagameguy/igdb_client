@@ -6,17 +6,16 @@ module IgdbClient
   module Query
     module Fields
       class SortTest < ::Minitest::Test
-
         describe IgdbClient::Query::Fields::Sort do
           let(:subject) { IgdbClient::Query::Fields::Sort }
 
           describe "#field" do
             it "returns a formatted string with a default sort order when one is not provided" do
-              assert_equal subject.new("aggregated_rating").field, "sort aggregated_rating asc;"
+              assert_equal "sort aggregated_rating asc;", subject.new("aggregated_rating").field
             end
 
             it "accepts a second parameter to inform the sort order" do
-              assert_equal subject.new("aggregated_rating", :desc).field, "sort aggregated_rating desc;"
+              assert_equal "sort aggregated_rating desc;", subject.new("aggregated_rating", :desc).field
             end
 
             it "raises an error if more than one field is provided to the sort argument" do

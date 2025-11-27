@@ -11,7 +11,7 @@ module IgdbClient
 
           describe "#field" do
             it "returns a formatted string" do
-              assert_equal subject.new("Sherlock Holmes").field, "search \"Sherlock Holmes\";"
+              assert_equal "search \"Sherlock Holmes\";", subject.new("Sherlock Holmes").field
             end
 
             it "returns an empty value when no argument is provided" do

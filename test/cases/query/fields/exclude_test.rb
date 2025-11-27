@@ -6,13 +6,12 @@ module IgdbClient
   module Query
     module Fields
       class ExcludeTest < ::Minitest::Test
-
         describe IgdbClient::Query::Fields::Exclude do
           let(:subject) { IgdbClient::Query::Fields::Exclude }
 
           describe "#field" do
             it "returns a formatted string" do
-              assert_equal subject.new("screenshots,websites").field, "exclude screenshots,websites;"
+              assert_equal "exclude screenshots,websites;", subject.new("screenshots,websites").field
             end
 
             it "returns an empty string if no input is provided" do

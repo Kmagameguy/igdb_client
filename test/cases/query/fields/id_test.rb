@@ -11,11 +11,11 @@ module IgdbClient
 
           describe "#field" do
             it "returns a formatted string" do
-              assert_equal subject.new(12).field, "where id = (12);"
+              assert_equal "where id = (12);", subject.new(12).field
             end
 
             it "accepts arrays as arguments" do
-              assert_equal subject.new([12, 33]).field, "where id = (12,33);"
+              assert_equal "where id = (12,33);", subject.new([12, 33]).field
             end
 
             it "returns an empty value when no argument is provided" do
