@@ -34,25 +34,15 @@ module IgdbClient
       def perform_validations
         errors = []
 
-        if @id.present? && @search.present?
-          errors << "Cannot combine ID with Search"
-        end
+        errors << "Cannot combine ID with Search" if @id.present? && @search.present?
 
-        if @fields != "*" && @exclude.present?
-          errors << "Cannot combine Fields with Exclude"
-        end
+        errors << "Cannot combine Fields with Exclude" if @fields != "*" && @exclude.present?
 
-        if @id.present? && @offset.present?
-          errors << "Cannot combine ID with Offset"
-        end
+        errors << "Cannot combine ID with Offset" if @id.present? && @offset.present?
 
-        if @id.present? && @filter.present?
-          errors << "Cannot combine ID with Filters"
-        end
+        errors << "Cannot combine ID with Filters" if @id.present? && @filter.present?
 
-        if errors.any?
-          raise InvalidArguments, errors.join(", ")
-        end
+        raise InvalidArguments, errors.join(", ") if errors.any?
 
         show_redundant_argument_warning if @id.present? && @limit.present?
       end

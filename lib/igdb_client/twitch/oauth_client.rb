@@ -18,13 +18,11 @@ module IgdbClient
           f.body = request_body
         end
 
-        if response.success?
-          token_data = JSON.parse(response.body, object_class: OpenStruct)
-          self.token_expiration_date = Time.current + token_data.expires_in
-          @access_token = token_data.access_token
-        else
-          raise Error, "Couldn't retrieve Twitch access token"
-        end
+        raise Error, "Couldn't retrieve Twitch access token" unless response.success?
+
+        token_data = JSON.parse(response.body, object_class: OpenStruct)
+        self.token_expiration_date = Time.current + token_data.expires_in
+        @access_token = token_data.access_token
       end
 
       def id
