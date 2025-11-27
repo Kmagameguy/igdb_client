@@ -43,7 +43,7 @@ module IgdbClient
         end
 
         def valid_order_direction?
-          [:asc, :desc].include?(@order)
+          %i[asc desc].include?(@order)
         end
       end
     end
