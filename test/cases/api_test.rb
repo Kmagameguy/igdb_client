@@ -1,6 +1,6 @@
 require "test_helper"
 
-class IgdbClient::ApiTest < ::Minitest::Test
+class IgdbClient::ApiTest < Minitest::Test
   describe IgdbClient::Api do
     let(:subject) { ::IgdbClient::Api }
     let(:all_endpoints) { ::IgdbClient::Constants::Endpoints::ALL}

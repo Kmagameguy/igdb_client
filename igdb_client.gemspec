@@ -10,8 +10,8 @@ Gem::Specification.new do |spec|
   spec.summary       = "A Ruby client for the Internet Game Database"
   spec.homepage      = "https://github.com/kmagameguy/igdb_client"
 
-  spec.files         = ::Dir.glob(::Pathname.new(__dir__).join("lib/**/**")).reject do |file|
-    file.match(%r{^(test)/}) || ::File.directory?(file)
+  spec.files         = Dir.glob(Pathname.new(__dir__).join("lib/**/**")).reject do |file|
+    file.match(%r{^(test)/}) || File.directory?(file)
   end
 
   spec.bindir        = "bin"

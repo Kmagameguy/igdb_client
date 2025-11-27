@@ -1,6 +1,6 @@
 require "test_helper"
 
-class IgdbClient::Twitch::OauthClientTest < ::Minitest::Test
+class IgdbClient::Twitch::OauthClientTest < Minitest::Test
   describe IgdbClient::Twitch::OauthClient do
     let(:subject) { IgdbClient::Twitch::OauthClient }
 
