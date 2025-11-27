@@ -7,7 +7,7 @@ module IgdbClient
     end
 
     def help
-      "Available endpoints: #{Constants::Endpoints::ALL.join(", ")}"
+      "Available endpoints: #{Constants::Endpoints::ALL.join(', ')}"
     end
 
     def get(path, **opts)
