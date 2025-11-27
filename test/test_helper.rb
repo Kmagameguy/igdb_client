@@ -23,6 +23,6 @@ VCR.configure do |vcr|
     record: :once,
     match_requests_on: %i[method host path query]
   }
-  vcr.filter_sensitive_data("<TWITCH_API_CLIENT_ID>")     { ENV["TWITCH_API_CLIENT_ID"] }
-  vcr.filter_sensitive_data("<TWITCH_API_CLIENT_SECRET>") { ENV["TWITCH_API_CLIENT_SECRET"] }
+  vcr.filter_sensitive_data("<TWITCH_API_CLIENT_ID>")     { ENV.fetch("TWITCH_API_CLIENT_ID", nil) }
+  vcr.filter_sensitive_data("<TWITCH_API_CLIENT_SECRET>") { ENV.fetch("TWITCH_API_CLIENT_SECRET", nil) }
 end
