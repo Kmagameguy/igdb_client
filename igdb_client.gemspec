@@ -22,14 +22,4 @@ Gem::Specification.new do |spec|
   spec.add_dependency("faraday")
   spec.add_dependency("activesupport")
   spec.add_dependency("ostruct")
-
-  spec.add_development_dependency("rake")
-  spec.add_development_dependency("vcr")
-  spec.add_development_dependency("webmock")
-  spec.add_development_dependency("minitest")
-  spec.add_development_dependency("minitest-reporters")
-  spec.add_development_dependency("minitest-focus")
-  spec.add_development_dependency("bundler")
-  spec.add_development_dependency("pry")
-  spec.add_development_dependency("pry-byebug")
 end
