@@ -13,7 +13,7 @@ module IgdbClient
       def access_token
         return @access_token unless @access_token.nil? || Time.current >= token_expiration_date
 
-        response = Faraday.post("#{oauth_url}") do |f|
+        response = Faraday.post(oauth_url.to_s) do |f|
           f.headers["Content-Type"] = "application/json"
           f.body = request_body
         end
