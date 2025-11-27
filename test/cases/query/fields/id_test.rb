@@ -25,12 +25,12 @@ module IgdbClient
 
           describe "#one?" do
             it "returns true if a single value is provided" do
-              assert subject.new(12).one?
-              assert subject.new([12]).one?
+              assert_predicate subject.new(12), :one?
+              assert_predicate subject.new([12]), :one?
             end
 
             it "returns false if more than a single value is provided" do
-              refute subject.new([3, 12]).one?
+              refute_predicate subject.new([3, 12]), :one?
             end
           end
         end

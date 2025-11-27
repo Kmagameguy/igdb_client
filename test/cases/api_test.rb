@@ -5,7 +5,7 @@ require "test_helper"
 class IgdbClient::ApiTest < Minitest::Test
   describe IgdbClient::Api do
     let(:subject) { ::IgdbClient::Api }
-    let(:all_endpoints) { ::IgdbClient::Constants::Endpoints::ALL}
+    let(:all_endpoints) { ::IgdbClient::Constants::Endpoints::ALL }
 
     describe ".help" do
       it "is an alias for #help and presents helpful usage information" do
@@ -26,26 +26,28 @@ class IgdbClient::ApiTest < Minitest::Test
           sample_game = response.sample
 
           assert_equal 10, response.length
-          assert sample_game.id.present?
-          assert sample_game.name.present?
+          assert_predicate sample_game.id, :present?
+          assert_predicate sample_game.name, :present?
         end
       end
 
       it "returns an item instead of an array when 'id' is specified" do
         VCR.use_cassette("list_of_game_names") do
-          game = subject.new.get(:games, fields: "name", id: 88308)
-          assert game.is_a?(OpenStruct)
-          assert game.id.present?
-          assert game.name.present?
+          game = subject.new.get(:games, fields: "name", id: 88_308)
+
+          assert_kind_of OpenStruct, game
+          assert_predicate game.id, :present?
+          assert_predicate game.name, :present?
         end
       end
 
       it "returns an item instead of an array when 'limit == 1' is specified" do
         VCR.use_cassette("list_of_game_names") do
           game = subject.new.get(:games, fields: "name", limit: 1)
-          assert game.is_a?(OpenStruct)
-          assert game.id.present?
-          assert game.name.present?
+
+          assert_kind_of OpenStruct, game
+          assert_predicate game.id, :present?
+          assert_predicate game.name, :present?
         end
       end
 
@@ -60,7 +62,7 @@ class IgdbClient::ApiTest < Minitest::Test
           response = subject.new.get(:games, search: "Half-Life 2", fields: "name")
           sample_game = response.sample
 
-          assert sample_game.id.present?
+          assert_predicate sample_game.id, :present?
           assert_match "Half-Life 2", sample_game.name
         end
       end

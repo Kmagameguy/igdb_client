@@ -101,24 +101,24 @@ module IgdbClient
 
         describe "#limit_to_one?" do
           it "returns true if a limit option of 1 is supplied" do
-            assert subject.new(limit: 1).limit_to_one?
+            assert_predicate subject.new(limit: 1), :limit_to_one?
           end
 
           it "returns true if a single ID is supplied" do
-            assert subject.new(id: 4).limit_to_one?
-            assert subject.new(id: [4]).limit_to_one?
+            assert_predicate subject.new(id: 4), :limit_to_one?
+            assert_predicate subject.new(id: [4]), :limit_to_one?
           end
 
           it "returns true if for some reason multiple IDs but a limit of 1 is supplied" do
-            assert subject.new(id: [5, 7], limit: 1).limit_to_one?
+            assert_predicate subject.new(id: [5, 7], limit: 1), :limit_to_one?
           end
 
           it "returns false if multiple IDs are supplied" do
-            refute subject.new(id: [5, 7]).limit_to_one?
+            refute_predicate subject.new(id: [5, 7]), :limit_to_one?
           end
 
           it "returns false if a limit greater than 1 is supplied" do
-            refute subject.new(limit: 2).limit_to_one?
+            refute_predicate subject.new(limit: 2), :limit_to_one?
           end
         end
       end
