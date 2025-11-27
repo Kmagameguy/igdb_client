@@ -22,7 +22,7 @@ module IgdbClient
       end
 
       def build
-        params.values.map(&:field).join("")
+        params.values.map(&:field).join
       end
 
       def limit_to_one?
