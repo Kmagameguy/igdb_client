@@ -4,8 +4,7 @@ gemspec
 
 group :development, :test do
   gem "bundler"
-  gem "pry"
-  gem "pry-byebug"
+  gem "debug"
   gem "rake"
   gem "rubocop"
   gem "rubocop-minitest"
