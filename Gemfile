@@ -6,10 +6,10 @@ group :development, :test do
   gem "bundler"
   gem "debug"
   gem "rake"
-  gem "rubocop"
-  gem "rubocop-minitest"
-  gem "rubocop-performance"
-  gem "rubocop-rake"
+  gem "rubocop",             require: false
+  gem "rubocop-minitest",    require: false
+  gem "rubocop-performance", require: false
+  gem "rubocop-rake",        require: false
 end
 
 group :test do
